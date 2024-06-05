@@ -12,7 +12,6 @@ const dbConfig = config.dbConfig;
 
 let db;
 
-// Function to initialize the database connection
 function initializeDbConnection() {
     db = mysql.createConnection(dbConfig);
     db.connect((err) => {
@@ -24,7 +23,6 @@ function initializeDbConnection() {
     });
 }
 
-// Spécifiez le répertoire contenant vos fichiers statiques (CSS, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
@@ -35,7 +33,6 @@ app.get('/', (req, res) => {
 app.get('/search', (req, res) => {
     const input = req.query.entry.toLowerCase();
 
-    // Requête SQL pour chercher dans la base de données
     const query = `SELECT label FROM entries WHERE entry = ?`;
 
     db.query(query, [input], (err, result) => {
@@ -43,11 +40,7 @@ app.get('/search', (req, res) => {
             console.error('Erreur lors de la recherche dans la base de données :', err);
             res.status(500).send('Erreur interne du serveur');
             return;
-        }
-
-        console.log("Result length");
-        console.log(result.length);
-        
+        }        
         if (result.length > 0) {
             res.send(result[0].label);
         } else {
