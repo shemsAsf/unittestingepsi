@@ -5,6 +5,7 @@ const {calculateExpression} = require("../public/script.js")
 describe('Unit testing', () => {
     it('test expression evaluation', async () => {
         expect(calculateExpression("2")).toBe(2);
+    done();
     });
     
     it('test operation priority', async () => {
@@ -12,5 +13,6 @@ describe('Unit testing', () => {
         expect(calculateExpression("(1+2)*3+4")).toBe(13);
         expect(calculateExpression("1+2*(3+4)")).toBe(15);
         expect(calculateExpression("(1+2)*(3+4)")).toBe(21);
+    done();
     });
 });
