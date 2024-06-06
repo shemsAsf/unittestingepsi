@@ -31,9 +31,9 @@ DROP TABLE IF EXISTS `entries`;
 CREATE TABLE IF NOT EXISTS `entries` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `entry` text NOT NULL,
-  `label` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `label` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `entries`
