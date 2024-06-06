@@ -11,10 +11,11 @@ beforeEach(async () => {
     page = await browser.newPage();
 });
 
-afterEach(async () => {
+afterEach(async (done) => {
     if (page) {
         await page.close();
     }
+    done();
 });
 
 test('Calculator add test', async () => {
