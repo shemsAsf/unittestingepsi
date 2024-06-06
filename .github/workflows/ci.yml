@@ -20,7 +20,7 @@ jobs:
           MYSQL_HOST: ${{ secrets.DB_HOST }}
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping --host=${MYSQL_HOST}" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping --host=${MYSQL_HOST} --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout repository
@@ -34,9 +34,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Wait for MySQL to be ready
+        run: |
+          until mysqladmin ping --host=${{ secrets.DB_HOST }} --user=${{ secrets.DB_USER }} --password=${{ secrets.DB_PASSWORD }} --silent; do
+            echo "Waiting for MySQL..."
+            sleep 2
+          done
+
       - name: Initialize database
         run: |
-          mysql --host=${{ secrets.DB_HOST }}" --user=${{ secrets.DB_USER }}" --password=${{ secrets.DB_PASSWORD }} ${{ secrets.DB_NAME }} < init_db.sql
+          mysql --host=${{ secrets.DB_HOST }} --user=${{ secrets.DB_USER }} --password=${{ secrets.DB_PASSWORD }} ${{ secrets.DB_NAME }} < init_db.sql
 
       - name: Set up database environment
         run: |
