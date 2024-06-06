@@ -11,9 +11,8 @@ beforeEach(async () => {
     page = await browser.newPage();
 });
 
-afterAll(done => {
-    browser.close()
-    done();
+afterAll(async (done) => {
+    await browser.close()
 });
 
 test('Calculator add test', async () => {
@@ -23,6 +22,7 @@ test('Calculator add test', async () => {
     await page.click('#calculator_btn_5');
     await page.click('#calculator_btn_equal');
     const display = await page.$eval('#display', dsp => dsp.value);
+    await page.close();
     expect(display).toBe('7');
 });
 
@@ -33,6 +33,7 @@ test('Calculator substract test', async () => {
     await page.click('#calculator_btn_3');
     await page.click('#calculator_btn_equal');
     const display = await page.$eval('#display', dsp => dsp.value);
+    await page.close();
     expect(display).toBe('6');
 });
 
@@ -43,6 +44,7 @@ test('Calculator multiply test', async () => {
     await page.click('#calculator_btn_5');
     await page.click('#calculator_btn_equal');
     const display = await page.$eval('#display', dsp => dsp.value);
+    await page.close();
     expect(display).toBe('40');
 });
 
@@ -52,6 +54,7 @@ test('Searchbar test success', async () => {
     await page.type('#searchInput', 'eggs');
     await page.click('#searchSubmit');
     const display = await page.$eval('#result', dsp => dsp.textContent);
+    await page.close();
     expect(display).toBe('And bakey');
 });
 
@@ -61,6 +64,7 @@ test('Searchbar test missing', async () => {
     await page.type('#searchInput', 'missingInput');
     await page.click('#searchSubmit');
     const display = await page.$eval('#result', dsp => dsp.textContent);
+    await page.close();
     expect(display).toBe('Aucun résultat trouvé');
 });
 
