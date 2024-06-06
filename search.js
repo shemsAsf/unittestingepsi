@@ -27,6 +27,18 @@ function initializeDbConnection() {
     });
 }
 
+function closeDbConnection() {
+    if (db) {
+        db.end((err) => {
+            if (err) {
+                console.error('Erreur lors de la fermeture de la connexion à la base de données :', err);
+                throw err;
+            }
+            console.log('Connexion à la base de données fermée');
+        });
+    }
+}
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
@@ -53,7 +65,7 @@ app.get('/search', (req, res) => {
     });
 });
 
-module.exports = { app, initializeDbConnection };
+module.exports = { app, initializeDbConnection, closeDbConnection };
 
 if (require.main === module) {
     app.listen(PORT, () => {

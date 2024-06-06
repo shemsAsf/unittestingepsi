@@ -3,7 +3,7 @@ const request = require('supertest');
 const {calculateExpression} = require("../public/script.js")
 
 beforeAll(done => {
-    done()
+    done();
 });
   
 afterAll(done => {

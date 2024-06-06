@@ -18,7 +18,7 @@ afterEach(async () => {
 });
 
 beforeAll(done => {
-    done()
+    done();
 });
   
 afterAll(done => {
