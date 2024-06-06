@@ -13,7 +13,6 @@ afterAll(done => {
 describe('Unit testing', () => {
     it('test expression evaluation', async () => {
         expect(calculateExpression("2")).toBe(2);
-    done();
     });
     
     it('test operation priority', async () => {
