@@ -33,13 +33,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Wait for MySQL to be ready
-        run: |
-          ls -al /var/run/mysqld/
-          until mysqladmin ping -h localhost; do
-            echo "Waiting for MySQL..."
-            sleep 10
-          done
+#      - name: Wait for MySQL to be ready
+#        run: |
+#          until mysqladmin ping -h localhost; do
+#            echo "Waiting for MySQL..."
+#            sleep 10
+#          done
 
       - name: Execute Initialization Script
         run: |
