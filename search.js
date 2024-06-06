@@ -33,7 +33,6 @@ function closeDbConnection() {
                 console.error('Erreur lors de la fermeture de la connexion à la base de données :', err);
                 throw err;
             }
-            console.log('Connexion à la base de données fermée');
         });
     }
 }
