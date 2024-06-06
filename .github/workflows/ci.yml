@@ -15,7 +15,6 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.DB_NAME }}
         ports:
           - 3306:3306
@@ -40,20 +39,15 @@ jobs:
 #            sleep 10
 #          done
 
-      - name: Create MySQL Database
-        run: |
-          mysql --host=localhost --user=root --password="${{ secrets.DB_PASSWORD }}" --protocol=TCP --execute="CREATE DATABASE IF NOT EXISTS ${{ secrets.DB_NAME }}"
-
-
       - name: Execute Initialization Script
         run: |
-          mysql --host=localhost --user=root --password="${{ secrets.DB_PASSWORD }}" --protocol=TCP ${{ secrets.DB_NAME }} < init_db.sql
+          mysql --host=localhost --user=root --password="" --protocol=TCP ${{ secrets.DB_NAME }} < init_db.sql
 
       - name: Set up database environment
         run: |
           echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
           echo "DB_USER=${{ secrets.DB_USER }}" >> .env
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          echo "DB_PASSWORD=" >> .env
           echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
 
       - name: Start application
