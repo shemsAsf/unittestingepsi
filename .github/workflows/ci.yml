@@ -37,7 +37,7 @@ jobs:
         run: |
           until mysqladmin ping --host=mysql --user=root --password="${{ secrets.DB_PASSWORD }}" --silent; do
             echo "Waiting for MySQL..."
-            sleep 2
+            sleep 10
           done
 
       - name: Execute Initialization Script
