@@ -40,6 +40,11 @@ jobs:
 #            sleep 10
 #          done
 
+      - name: Create MySQL Database
+        run: |
+          mysql --host=localhost --user=root --password="${{ secrets.DB_PASSWORD }}" --execute="CREATE DATABASE IF NOT EXISTS ${{ secrets.DB_NAME }}"
+
+
       - name: Execute Initialization Script
         run: |
           mysql --host=localhost --user=root --password="${{ secrets.DB_PASSWORD }}" --protocol=TCP ${{ secrets.DB_NAME }} < init_db.sql
