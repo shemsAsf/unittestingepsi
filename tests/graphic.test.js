@@ -11,7 +11,7 @@ beforeEach(async () => {
     page = await browser.newPage();
 });
 
-afterAll(async (done) => {
+afterEach(async (done) => {
     await browser.close()
 });
 
