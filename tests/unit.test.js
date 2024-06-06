@@ -1,10 +1,6 @@
 const { app, initializeDbConnection } = require('../search.js');
 const request = require('supertest');
 const {calculateExpression} = require("../public/script.js")
-
-beforeAll(done => {
-    done();
-});
   
 afterAll(done => {
     done();

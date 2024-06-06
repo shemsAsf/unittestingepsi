@@ -1,10 +1,6 @@
 const { app, initializeDbConnection, closeDbConnection } = require('../search.js');
 const request = require('supertest');
 const mysql = require('mysql');
-
-beforeAll(done => {
-    done();
-});
   
 afterAll(done => {
     done();
@@ -28,7 +24,7 @@ describe('Search Endpoint', () => {
         expect(response.text).toBe('And bakey');
         closeDbConnection();
     });
-    
+
     it('should return missing label, Entry does not exists in the database', async () => {
         initializeDbConnection();
         const response = await request(app).get('/search?entry=notInDB')

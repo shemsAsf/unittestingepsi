@@ -23,7 +23,6 @@ function initializeDbConnection() {
             console.error('Erreur de connexion à la base de données MySQL :', err);
             throw err;
         }
-        console.log('Connecté à la base de données MySQL');
     });
 }
 
