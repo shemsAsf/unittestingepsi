@@ -16,8 +16,8 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: ""
-          MYSQL_DATABASE: unittestepsi
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_NAME }} 
+          MYSQL_DATABASE: ${{ secrets.DB_NAME }}  
         ports:
           - 3306:3306
 
@@ -35,13 +35,13 @@ jobs:
 
       - name: Set up database environment
         run: |
-          echo DB_HOST=localhost >> .env
-          echo DB_USER=root >> .env
-          echo DB_PASSWORD= >> .env
-          echo DB_NAME=unittestepsi >> .env
+          echo "DB_HOST=$DB_HOST" >> .env
+          echo "DB_USER=$DB_USER" >> .env
+          echo "DB_PASSWORD=$DB_PASSWORD" >> .env
+          echo "DB_NAME=$DB_NAME" >> .env
 
       - name: Start application
-        run: node path/to/your/app.js &  # Replace with the actual command to start your app
+        run: node search.js &  # Adjust the command to start your app
 
       - name: Run tests
         run: npm test
