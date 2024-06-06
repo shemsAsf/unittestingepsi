@@ -35,6 +35,7 @@ jobs:
 
       - name: Wait for MySQL to be ready
         run: |
+          ls -al /var/run/mysqld/
           until mysqladmin ping -h localhost; do
             echo "Waiting for MySQL..."
             sleep 10
