@@ -19,11 +19,8 @@ jobs:
           MYSQL_DATABASE: ${{ secrets.DB_NAME }}
         ports:
           - 3306:3306
-#        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
-        healthcheck:
-            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-            timeout: 20s
-            retries: 10
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -36,12 +33,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-#      - name: Wait for MySQL to be ready
-#        run: |
-#          until mysqladmin ping --host=mysql --user=root --password="${{ secrets.DB_PASSWORD }}" --silent; do
-#            echo "Waiting for MySQL..."
-#            sleep 10
-#          done
+      - name: Wait for MySQL to be ready
+        run: |
+          until mysqladmin ping -h localhost; do
+            echo "Waiting for MySQL..."
+            sleep 10
+          done
 
       - name: Execute Initialization Script
         run: |
