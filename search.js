@@ -2,13 +2,17 @@ const express = require('express');
 const mysql = require('mysql');
 const path = require('path');
 const fs = require('fs');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const configPath = path.join(__dirname, 'config.json');
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-const dbConfig = config.dbConfig;
+const dbConfig = {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+};
 
 let db;
 

@@ -2,7 +2,7 @@
 start "" "C:\wamp64\wampmanager.exe"  
 timeout /t 15
 
-start "" "node ..\search.js"  
+start "" "node search.js"  
 timeout /t 10
 
 npm run test
