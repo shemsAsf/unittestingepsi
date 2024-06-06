@@ -42,7 +42,7 @@ jobs:
 
       - name: Execute Initialization Script
         run: |
-          mysql --host=mysql --user=root --password="${{ secrets.DB_PASSWORD }}" ${{ secrets.DB_NAME }} < init_db.sql
+          mysql --host=localhost --user=root --password="${{ secrets.DB_PASSWORD }}" ${{ secrets.DB_NAME }} < init_db.sql
 
       - name: Set up database environment
         run: |
