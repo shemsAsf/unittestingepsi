@@ -41,8 +41,8 @@ jobs:
 #          done
 
       - name: Execute Initialization Script
-        run: |
-          mysql --host=localhost --user=root --password="${{ secrets.DB_PASSWORD }}" ${{ secrets.DB_NAME }} < init_db.sql
+      run: |
+      mysql --host=localhost --user=root --password="${{ secrets.DB_PASSWORD }}" --protocol=TCP ${{ secrets.DB_NAME }} < init_db.sql
 
       - name: Set up database environment
         run: |
