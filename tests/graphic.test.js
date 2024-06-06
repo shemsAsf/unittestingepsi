@@ -11,8 +11,9 @@ beforeEach(async () => {
     page = await browser.newPage();
 });
 
-afterEach(async (done) => {
-    await browser.close()
+afterEach((done) => {
+    browser.close()
+    done();
 });
 
 test('Calculator add test', async () => {
