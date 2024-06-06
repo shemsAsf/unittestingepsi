@@ -8,6 +8,13 @@ function clearDisplay() {
 
 function calculate() {
     var expression = document.getElementById('display').value;
-    var result = eval(expression);
+    var result = calculateExpression(expression);
     document.getElementById('display').value = result;
 }
+
+function calculateExpression(expression) {
+    return eval(expression);
+}
+
+
+module.exports = { calculateExpression };
